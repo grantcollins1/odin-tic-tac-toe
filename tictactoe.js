@@ -68,8 +68,8 @@ function createGameboard() {
     }
     return diagonal;
   };
-  const play = () => {
-    makeMove(0, 0);
+  const play = (hIndex, vIndex) => {
+    makeMove(hIndex, vIndex);
     console.table(gameboardArray);
     checkForWinner();
   }
@@ -80,5 +80,5 @@ const gameboard = createGameboard();
 const button = document.createElement("button");
 button.addEventListener("click", () => gameboard.play());
 const mySquares = document.body.querySelectorAll('.grid-container div button');
-mySquares.forEach((square) => square.addEventListener("click", () => console.log(square.id)))
+mySquares.forEach((square) => square.addEventListener("click", () => gameboard.play(square.id[1], square.id[0])))
 document.body.appendChild(button);
