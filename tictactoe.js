@@ -68,10 +68,19 @@ function createGameboard() {
     }
     return diagonal;
   };
+
+  const resetGame = () => {
+    gameboardArray = [['', '', ''], ['', '', ''], ['', '', '']];
+    myTurn = playerOne;
+  }
   const play = (hIndex, vIndex) => {
     makeMove(hIndex, vIndex);
     console.table(gameboardArray);
-    checkForWinner();
+    const winner = checkForWinner();
+    console.log("winner" + winner);
+    if (winner !== '') {
+      resetGame();
+    }
   }
   return {play};
 }
@@ -80,5 +89,9 @@ const gameboard = createGameboard();
 const button = document.createElement("button");
 button.addEventListener("click", () => gameboard.play());
 const mySquares = document.body.querySelectorAll('.grid-container div button');
-mySquares.forEach((square) => square.addEventListener("click", () => gameboard.play(square.id[1], square.id[0])))
+mySquares.forEach((square) => square.addEventListener("click", () => {
+  gameboard.play(square.id[1], square.id[0]);
+  square.classList.add('disabled-button');
+  square.disabled = true;
+}))
 document.body.appendChild(button);
