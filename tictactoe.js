@@ -90,6 +90,7 @@ const gameboard = createGameboard();
 const mySquares = document.body.querySelectorAll('.grid-container div button');
 const playerTurn = document.body.querySelector('div .current-turn');
 const winnerText = document.body.querySelector('.winner-text');
+winnerText.open = false;
 const resetButton = document.body.querySelector('.reset-button');
 mySquares.forEach((square) => square.addEventListener("click", () => {
   square.classList.add('disabled-button');
@@ -100,7 +101,8 @@ mySquares.forEach((square) => square.addEventListener("click", () => {
   if (winner !== '') {
     showWinningBoard(mySquares);
     playerTurn.textContent = '';
-    winnerText.textContent = `Winner: ${winner}`;
+    winnerText.open = true;
+    winnerText.textContent = `Game Over! ${winner} wins!`;
   }
   else {
     playerTurn.textContent = gameboard.getMyTurn().symbol;

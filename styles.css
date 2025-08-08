@@ -27,17 +27,36 @@ button:hover {
   filter: brightness(100%);
 }
 
-.grid-container div {
-}
-
 div div button {
   border: none;
   width: 200px;
   height: 200px;
-  background-color: white;
 }
 
+body, div div button {
+  background-color: rgb(255, 239, 219);
+}
 .reset-button {
   border: 0;
   border-radius: 5px;
+  height: 30px;
+  background-color: rgb(230, 92, 92);
+  color: white;
+  font-weight: bold;
+
+}
+
+.winner-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 60vh;
+  left: 75vw;
+  height: 100px;
+  width: 200px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 36px;
+  text-align: center;
 }
