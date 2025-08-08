@@ -1,4 +1,36 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+button:hover {
+  filter: brightness(90%);
+}
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(3, 200px);
+  gap: 10px;
+  background-color: black;
+}
+
+
+.disabled-button {
+  color: black;
+  font-weight: bold;
+  font-size: 100px;
+}
+
+.disabled-button:hover {
+  filter: brightness(100%);
+}
+
+.grid-container div {
+}
+
+div div button {
+  border: none;
+  width: 200px;
+  height: 200px;
+  background-color: white;
 }
