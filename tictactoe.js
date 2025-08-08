@@ -78,8 +78,6 @@ function createGameboard() {
   const play = (hIndex, vIndex) => {
     makeMove(hIndex, vIndex);
     console.table(gameboardArray);
-    const winner = checkForWinner();
-    console.log("winner" + winner);
   }
   const isWinner = () => {
     const winner = checkForWinner();
@@ -96,6 +94,7 @@ const showWinningBoard = (squares) =>  squares.forEach((square) => {
 
 const gameboard = createGameboard();
 const mySquares = document.body.querySelectorAll('.grid-container div button');
+const playerTurn = document.body.querySelector('div .current-turn');
 mySquares.forEach((square) => square.addEventListener("click", () => {
   square.classList.add('disabled-button');
   square.disabled = true;
@@ -103,5 +102,9 @@ mySquares.forEach((square) => square.addEventListener("click", () => {
   gameboard.play(square.id[1], square.id[0]);
   if (gameboard.isWinner()) {
     showWinningBoard(mySquares);
+    playerTurn.textContent = '';
+  }
+  else {
+    playerTurn.textContent = gameboard.getMyTurn().symbol;
   }
 }))
