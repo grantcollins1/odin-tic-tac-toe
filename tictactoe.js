@@ -6,7 +6,6 @@ function createGameboard() {
   let gameboardArray = [['', '', ''], ['', '', ''], ['', '', '']];
   const playerOne = createPlayer("Player One", "X");
   const playerTwo = createPlayer("Player Two", "O");
-  const winner = false;
   let myTurn = playerOne;
   const makeMove = (horizontalIndex, verticalIndex) => {
     gameboardArray[verticalIndex][horizontalIndex] = myTurn.symbol;
@@ -79,7 +78,7 @@ function createGameboard() {
     makeMove(hIndex, vIndex);
     console.table(gameboardArray);
   }
-  return {play, getMyTurn, checkForWinner};
+  return {play, getMyTurn, checkForWinner, resetGame};
 }
 
 const showWinningBoard = (squares) =>  squares.forEach((square) => {
@@ -91,6 +90,7 @@ const gameboard = createGameboard();
 const mySquares = document.body.querySelectorAll('.grid-container div button');
 const playerTurn = document.body.querySelector('div .current-turn');
 const winnerText = document.body.querySelector('.winner-text');
+const resetButton = document.body.querySelector('.reset-button');
 mySquares.forEach((square) => square.addEventListener("click", () => {
   square.classList.add('disabled-button');
   square.disabled = true;
@@ -106,3 +106,13 @@ mySquares.forEach((square) => square.addEventListener("click", () => {
     playerTurn.textContent = gameboard.getMyTurn().symbol;
   }
 }))
+resetButton.addEventListener("click", () => {
+  gameboard.resetGame();
+  winnerText.textContent = '';
+  playerTurn.textContent = 'X';
+  mySquares.forEach((square) => {
+    square.classList.remove('disabled-button');
+    square.disabled = false;
+    square.textContent = '';
+})
+})

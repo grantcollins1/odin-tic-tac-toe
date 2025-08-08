@@ -12,7 +12,7 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(3, 200px);
   grid-template-rows: repeat(3, 200px);
-  gap: 10px;
+  gap: 5px;
   background-color: black;
 }
 
@@ -35,4 +35,9 @@ div div button {
   width: 200px;
   height: 200px;
   background-color: white;
+}
+
+.reset-button {
+  border: 0;
+  border-radius: 5px;
 }
