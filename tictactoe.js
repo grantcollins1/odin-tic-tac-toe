@@ -79,12 +79,7 @@ function createGameboard() {
     makeMove(hIndex, vIndex);
     console.table(gameboardArray);
   }
-  const isWinner = () => {
-    const winner = checkForWinner();
-    console.log(winner);
-    return winner !== '';
-  }
-  return {play, getMyTurn, isWinner};
+  return {play, getMyTurn, checkForWinner};
 }
 
 const showWinningBoard = (squares) =>  squares.forEach((square) => {
@@ -95,14 +90,17 @@ const showWinningBoard = (squares) =>  squares.forEach((square) => {
 const gameboard = createGameboard();
 const mySquares = document.body.querySelectorAll('.grid-container div button');
 const playerTurn = document.body.querySelector('div .current-turn');
+const winnerText = document.body.querySelector('.winner-text');
 mySquares.forEach((square) => square.addEventListener("click", () => {
   square.classList.add('disabled-button');
   square.disabled = true;
   square.textContent = gameboard.getMyTurn().symbol;
   gameboard.play(square.id[1], square.id[0]);
-  if (gameboard.isWinner()) {
+  const winner = gameboard.checkForWinner();
+  if (winner !== '') {
     showWinningBoard(mySquares);
     playerTurn.textContent = '';
+    winnerText.textContent = `Winner: ${winner}`;
   }
   else {
     playerTurn.textContent = gameboard.getMyTurn().symbol;
